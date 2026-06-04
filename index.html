@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function getComputerChoice(){
+
+            let val=getRandomInt(3);
+
+            if(val==0){
+                console.log("ROCK");
+                return "R"
+            } 
+            else if(val==1){
+                console.log("PAPER");
+                return "P"
+            } 
+            else{
+                console.log("SCISSOR");
+                return "S";
+            } 
+        }
+
+        function getHumanChoice(){
+            let choice=prompt("Rock(R), Paper(P), Scissor(S)","R");
+            choice=choice.toUpperCase();
+            return choice;
+        }
+
+        let humanScore=0;
+        let computerScore=0;
+        let ROUNDS=0;
+
+        function playRound(humanChoice,computerChoice){
+
+            console.log("Rolling..");
+            console.log(`ROUND ${++ROUNDS}`);
+
+            if(humanChoice==="R"){
+                if(computerChoice==="P"){
+                    console.log("Computer puts PAPER.. YOU LOST");
+                    computerScore++;
+                }
+                else if(computerChoice==="S"){
+                    console.log("Computer puts SCISSORS.. YOU WON");
+                    humanScore++;
+                }
+                else{
+                    console.log("Computer puts ROCK.. TIED");
+                }
+            }
+            else if(humanChoice==="P"){
+                if(computerChoice==="S"){
+                    console.log("Computer puts SCISSORS.. YOU LOST");
+                    computerScore++;
+                }
+                else if(computerChoice==="R"){
+                    console.log("Computer puts ROCK.. YOU WON");
+                    humanScore++;
+                }
+                else{
+                    console.log("Computer puts PAPER.. TIED");
+                }
+            }
+            else if(humanChoice==="S"){
+                if(computerChoice==="R"){
+                    console.log("Computer puts ROCK.. YOU LOST");
+                    computerScore++;
+                }
+                else if(computerChoice==="P"){
+                    console.log("Computer puts PAPER.. YOU WON");
+                    humanScore++;
+                }
+                else{
+                    console.log("Computer puts SCISSORS.. TIED");
+                }
+                
+            }
+            else{
+                console.log("Invalid input, COMPUTER WINS");
+                computerScore++;
+            }
+
+            console.log(`YOUR SCORE: ${humanScore}\nCOMPUTER SCORE: ${computerScore}`);
+        }
+
+        function playGame(n){
+            for(let i=0;i<n;i++){
+                const humanSelection = getHumanChoice();
+                const computerSelection = getComputerChoice();
+                playRound(humanSelection, computerSelection);
+            }
+        }
+
+        let rounds_number=prompt("How many rounds you wanna play?");
+        playGame(rounds_number);
+        console.log("=========================================");
+        if(humanScore>computerScore){
+            console.log("YOU BEAT COMPUTER!");
+        }
+        else if(humanScore==computerScore){
+            console.log("YOU TIED WITH COMPUTER!");
+        }
+        else{
+            console.log("YOU LOST TO COMPUTER");
+        }
+        console.log("=========================================");
+    </script>
+    
+</body>
+</html>
